@@ -12,27 +12,37 @@
 // rectangle in 2d space
 package rect
 
-import (
-	"github.com/kasworld/rand"
-)
-
 type Rect struct {
 	X, Y, W, H int
 }
 
-func (r Rect) RandAxis(rnd *rand.Rand, axis int) int {
+func (r Rect) RandAxis(rndIntRange func(st, ed int) int, axis int) int {
 	if axis == 0 {
-		return rnd.IntRange(r.X, r.X+r.W)
+		return rndIntRange(r.X, r.X+r.W)
 	} else {
-		return rnd.IntRange(r.Y, r.Y+r.H)
+		return rndIntRange(r.Y, r.Y+r.H)
 	}
 }
-func (r Rect) RandVector(rnd *rand.Rand) [2]int {
+func (r Rect) RandVector(rndIntRange func(st, ed int) int) [2]int {
 	return [2]int{
-		r.RandAxis(rnd, 0),
-		r.RandAxis(rnd, 1),
+		r.RandAxis(rndIntRange, 0),
+		r.RandAxis(rndIntRange, 1),
 	}
 }
+
+// func (r Rect) RandAxis(rnd *rand.Rand, axis int) int {
+// 	if axis == 0 {
+// 		return rnd.IntRange(r.X, r.X+r.W)
+// 	} else {
+// 		return rnd.IntRange(r.Y, r.Y+r.H)
+// 	}
+// }
+// func (r Rect) RandVector(rnd *rand.Rand) [2]int {
+// 	return [2]int{
+// 		r.RandAxis(rnd, 0),
+// 		r.RandAxis(rnd, 1),
+// 	}
+// }
 
 func (r Rect) Center() [2]int {
 	return [2]int{
