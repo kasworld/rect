@@ -1,4 +1,4 @@
-// Copyright 2015 SeukWon Kang (kasworld@gmail.com)
+// Copyright 2015,2016,2017,2018,2019 SeukWon Kang (kasworld@gmail.com)
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,7 +12,6 @@
 package rect
 
 import (
-	"github.com/kasworld/ivector2d"
 	"testing"
 )
 
@@ -47,7 +46,7 @@ func TestNotIsOverlap(t *testing.T) {
 
 func TestMakeRectBy4Driect1(t *testing.T) {
 	r := Rect{10, 10, 10, 10}
-	p := ivector2d.Vt{15, 15}
+	p := [2]int{15, 15}
 	rs := [4]Rect{}
 	for i := range rs {
 		rs[i] = r.MakeRectBy4Driect(p, i)
@@ -59,7 +58,7 @@ func TestMakeRectBy4Driect1(t *testing.T) {
 
 func TestMakeRectBy4Driect2(t *testing.T) {
 	r := Rect{10, 10, 10, 10}
-	p := ivector2d.Vt{15, 15}
+	p := [2]int{15, 15}
 	rs := [4]Rect{}
 	for i := range rs {
 		rs[i] = r.MakeRectBy4Driect(p, i)

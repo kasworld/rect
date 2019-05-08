@@ -1,4 +1,4 @@
-// Copyright 2015 SeukWon Kang (kasworld@gmail.com)
+// Copyright 2015,2016,2017,2018,2019 SeukWon Kang (kasworld@gmail.com)
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -25,24 +25,14 @@ func (r Rect) RandAxis(rndIntRange func(st, ed int) int, axis int) int {
 }
 func (r Rect) RandVector(rndIntRange func(st, ed int) int) [2]int {
 	return [2]int{
-		r.RandAxis(rndIntRange, 0),
-		r.RandAxis(rndIntRange, 1),
+		rndIntRange(r.X, r.X+r.W),
+		rndIntRange(r.Y, r.Y+r.H),
 	}
 }
 
-// func (r Rect) RandAxis(rnd *rand.Rand, axis int) int {
-// 	if axis == 0 {
-// 		return rnd.IntRange(r.X, r.X+r.W)
-// 	} else {
-// 		return rnd.IntRange(r.Y, r.Y+r.H)
-// 	}
-// }
-// func (r Rect) RandVector(rnd *rand.Rand) [2]int {
-// 	return [2]int{
-// 		r.RandAxis(rnd, 0),
-// 		r.RandAxis(rnd, 1),
-// 	}
-// }
+func (r Rect) RandXY(rndIntRange func(st, ed int) int) (int, int) {
+	return rndIntRange(r.X, r.X+r.W), rndIntRange(r.Y, r.Y+r.H)
+}
 
 func (r Rect) Center() [2]int {
 	return [2]int{
@@ -54,6 +44,12 @@ func (r Rect) SizeVector() [2]int {
 	return [2]int{r.W, r.H}
 }
 
+func (r Rect) Enlarge(size [2]int) Rect {
+	return Rect{
+		r.X - size[0], r.Y - size[1],
+		r.W + size[0]*2, r.H + size[1]*2,
+	}
+}
 func (r Rect) Shrink(size [2]int) Rect {
 	return Rect{
 		r.X + size[0], r.Y + size[1],
