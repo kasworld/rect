@@ -16,23 +16,23 @@ type Rect struct {
 	X, Y, W, H int
 }
 
-func (r Rect) RandAxis(rndIntRange func(st, ed int) int, axis int) int {
-	if axis == 0 {
-		return rndIntRange(r.X, r.X+r.W)
-	} else {
-		return rndIntRange(r.Y, r.Y+r.H)
-	}
-}
-func (r Rect) RandVector(rndIntRange func(st, ed int) int) [2]int {
-	return [2]int{
-		rndIntRange(r.X, r.X+r.W),
-		rndIntRange(r.Y, r.Y+r.H),
-	}
-}
+// func (r Rect) RandAxis(rndIntRange func(st, ed int) int, axis int) int {
+// 	if axis == 0 {
+// 		return rndIntRange(r.X, r.X+r.W)
+// 	} else {
+// 		return rndIntRange(r.Y, r.Y+r.H)
+// 	}
+// }
+// func (r Rect) RandVector(rndIntRange func(st, ed int) int) [2]int {
+// 	return [2]int{
+// 		rndIntRange(r.X, r.X+r.W),
+// 		rndIntRange(r.Y, r.Y+r.H),
+// 	}
+// }
 
-func (r Rect) RandXY(rndIntRange func(st, ed int) int) (int, int) {
-	return rndIntRange(r.X, r.X+r.W), rndIntRange(r.Y, r.Y+r.H)
-}
+// func (r Rect) RandXY(rndIntRange func(st, ed int) int) (int, int) {
+// 	return rndIntRange(r.X, r.X+r.W), rndIntRange(r.Y, r.Y+r.H)
+// }
 
 func (r Rect) Center() [2]int {
 	return [2]int{
